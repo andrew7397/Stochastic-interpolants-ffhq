@@ -1,0 +1,66 @@
+{
+    "training": {
+        "max_epochs": 5,
+        "visual_freq_steps": 100,
+        "validation_freq_steps": 500,
+        "learning_rate": 1e-4,
+        "weight_decay": 0.05,
+        "wd_exclude_params": [
+            "bias",
+            "norm"
+        ],
+        "clip_grad_norm": true,
+        "cosine_scheduler_with_warmup": true,
+        "num_warmup_steps": 500,
+        "num_training_steps": 100000,
+        "min_lr_ratio": 0.01,
+        "ema": true,
+        "beta_1": 0.995,
+        "beta_2": 1.0,
+        "ckpt_path": "./checkpoints",
+        "wandb_log_dir": "./wandb",
+        "wandb_project_name": "ffhq-flow-matching-mac",
+        "n_samples_metrics": 1000,
+        "batch_size_metrics": 16,
+        "resume": false
+    },
+    "model": {
+        "model_name": "ffhq_128_dit_mac",
+        "DiT_type": "DiT-S/4",
+        "input_size": 128,
+        "in_channels": 3,
+        "single_model": true
+    },
+    "interpolant": {
+        "gaussian_base_distr": true,
+        "mixture_numbers": 1,
+        "path": "linear",
+        "gamma_type": null,
+        "type_of_learning": "velocity",
+        "n_visual_sampling_steps": 50,
+        "n_metric_sampling_steps": 50,
+        "n_gen_samples": 64,
+        "eps": 0.0,
+        "lower_ts": 0.0,
+        "upper_ts": 1.0,
+        "sampler_method": "dopri5",
+        "atol": 1e-5,
+        "rtol": 1e-5
+    },
+    "data": {
+        "data_root": "./data/ffhq_light",
+        "dataset_name": "ffhq",
+        "train_config_file": "",
+        "val_config_file": "",
+        "test_config_file": "",
+        "train_batch_size": 16,
+        "val_batch_size": 16,
+        "num_workers": 0,
+        "clip": false,
+        "clip_val": null,
+        "rescale_mode": null,
+        "standardize_mode": null,
+        "normalize_min": null,
+        "normalize_max": null
+    }
+}

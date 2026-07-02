@@ -1,0 +1,66 @@
+{
+    "training": {
+        "max_epochs": 500,
+        "visual_freq_steps": 300,
+        "validation_freq_steps": 5000,
+        "learning_rate": 1e-4,
+        "weight_decay": 0.05,
+        "wd_exclude_params": [
+            "bias",
+            "norm"
+        ],
+        "clip_grad_norm": true,
+        "cosine_scheduler_with_warmup": false,
+        "num_warmup_steps": 1000,
+        "num_training_steps": 100000,
+        "min_lr_ratio": 0.01,
+        "ema": true,
+        "beta_1": 0.999,
+        "beta_2": 1.0,
+        "ckpt_path": "./checkpoints",
+        "wandb_log_dir": "./wandb",
+        "wandb_project_name": "ffhq-velocity-denoiser-new",
+        "n_samples_metrics": 1000,
+        "batch_size_metrics": 64,
+        "resume": true
+    },
+    "model": {
+        "model_name": "ffhq_128_dit_velocity_denoiser",
+        "DiT_type": "DiT-S/4",
+        "input_size": 128,
+        "in_channels": 3,
+        "single_model": true
+    },
+    "interpolant": {
+        "gaussian_base_distr": true,
+        "mixture_numbers": 1,
+        "path": "one-sided-linear",
+        "gamma_type": null,
+        "type_of_learning": "velocity-denoiser",
+        "n_visual_sampling_steps": 50,
+        "n_metric_sampling_steps": 50,
+        "n_gen_samples": 64,
+        "eps": 1.0,
+        "lower_ts": 0.0001,
+        "upper_ts": 0.9999,
+        "sampler_method": "heun",
+        "atol": 1e-5,
+        "rtol": 1e-5
+    },
+    "data": {
+        "data_root": "./ffhq-dataset",
+        "dataset_name": "ffhq",
+        "train_config_file": "",
+        "val_config_file": "",
+        "test_config_file": "",
+        "train_batch_size": 16,
+        "val_batch_size": 16,
+        "num_workers": 2,
+        "clip": false,
+        "clip_val": null,
+        "rescale_mode": null,
+        "standardize_mode": null,
+        "normalize_min": null,
+        "normalize_max": null
+    }
+}
